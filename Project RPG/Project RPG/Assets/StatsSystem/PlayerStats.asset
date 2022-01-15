@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603f2a2d1645d4644bd0d7fe613d8bd1, type: 3}
+  m_Name: PlayerStats
+  m_EditorClassIdentifier: 
+  attributes:
+  - type: 0
+    value:
+      modifiedValue: 5
+  - type: 1
+    value:
+      modifiedValue: 5
+  - type: 2
+    value:
+      modifiedValue: 5
+  - type: 3
+    value:
+      modifiedValue: 5
+  - type: 4
+    value:
+      modifiedValue: 1000
+  - type: 5
+    value:
+      modifiedValue: 200
+  - type: 6
+    value:
+      modifiedValue: 0
+  - type: 7
+    value:
+      modifiedValue: 0
+  LevelTabel: 64000000c8000000900100002003000040060000800c000000190000003200000064000000c8000000900100002003000040060000800c000000190000003200000064000000c8000000900100002003000040060000800c000000190000003200000064000000c8000000900000002000000040000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
