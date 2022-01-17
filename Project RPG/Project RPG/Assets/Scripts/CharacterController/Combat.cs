@@ -276,5 +276,10 @@ namespace RPG.PlyerController
         }
         #endregion Inventory
 
+        public void OnClickAttackButton()
+        {
+            Attack();
+        }
+
     }
 }

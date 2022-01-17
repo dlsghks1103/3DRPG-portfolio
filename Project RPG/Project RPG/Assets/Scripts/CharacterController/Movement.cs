@@ -23,6 +23,9 @@ namespace RPG.PlyerController
         [SerializeField]
         private Vector3 drags;
 
+        [SerializeField]
+        private bl_Joystick Joystick;
+
         private CharacterController characterController;
         private Vector3 calcVelocity = Vector3.zero;
 
@@ -84,8 +87,11 @@ namespace RPG.PlyerController
 
         private void ProcessMove()
         {
-            var _x = playerInput.MovementInput.x;
-            var _z = playerInput.MovementInput.y;
+            float _x = Joystick.Horizontal;
+            float _z = Joystick.Vertical;
+
+            //var _x = playerInput.MovementInput.x;
+            //var _z = playerInput.MovementInput.y;
 
             Vector3 moveDirection = new Vector3(_x, 0, _z);
             //moveDirection = transform.TransformDirection(moveDirection);
