@@ -39,6 +39,9 @@ namespace RPG.PlyerController
 
         [SerializeField]
         private LayerMask targetMask;
+        public Transform target;
+
+        private Camera camera;
 
         private bool isCoroutine = true;
 
@@ -49,6 +52,7 @@ namespace RPG.PlyerController
 
             animator = GetComponent<Animator>();
             playerInput = GetComponent<PlayerInput>();
+            camera = Camera.main;
 
             InitAttackBehaviour();
         }
@@ -68,6 +72,11 @@ namespace RPG.PlyerController
             if (!isOnUI && playerInput.AttackInput && !AttackInProgress&& playerStats.Mana >0)
             {
                 Attack();
+            }
+
+            if (!isOnUI && playerInput.NPCInteractInput)
+            {
+                NPCInteract();
             }
 
             if (playerStats.MaxMana > playerStats.Mana && isCoroutine)
@@ -264,7 +273,28 @@ namespace RPG.PlyerController
                 }
             }
         }
+        #region Quest
+        private void NPCInteract()
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                target = hit.collider.transform;
+            }
 
+            if (target != null)
+            {
+                if (target.GetComponent<IInteractable>() != null)
+                {
+                    IInteractable interactable = target.GetComponent<IInteractable>();
+                    interactable.Interact(this.gameObject);
+                    target = null;
+                }
+            }
+         }
+
+        #endregion
         private void OnTriggerEnter(Collider other)
         {
             var item = other.GetComponent<GroundItem>();
@@ -278,7 +308,10 @@ namespace RPG.PlyerController
 
         public void OnClickAttackButton()
         {
-            Attack();
+            if (playerStats.Mana > 0) 
+            {
+                Attack();
+            }
         }
 
     }

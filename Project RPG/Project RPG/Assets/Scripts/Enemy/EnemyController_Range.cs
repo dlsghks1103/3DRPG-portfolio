@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPG.QuestSystem;
 using UnityEngine;
 using RPG.AI;
 using RPG.Core;
@@ -7,6 +8,7 @@ using RPG.UIs;
 using RPG.CharacterControl;
 using RPG.InventorySystem.Inventory;
 using RPG.InventorySystem.Items;
+using RPG.StatsSystem;
 
 namespace RPG.Enemy
 {
@@ -15,11 +17,10 @@ namespace RPG.Enemy
         #region Variables
 
         [SerializeField]
+        public int EnemyID;
+
         public Transform hitPoint;
         public Transform[] waypoints;
-
-        [SerializeField]
-        public StatsObject playerStats;
 
         public override float AttackRange => CurrentAttackBehaviour?.range ?? 6.0f;
 
@@ -32,7 +33,7 @@ namespace RPG.Enemy
         [SerializeField]
         private ItemDatabaseObject itemDatabase;
 
-        public float maxHealth => 100f;
+        public float maxHealth => 10f;
         private float health;
 
         private int hitTriggerHash = Animator.StringToHash("HitTrigger");
@@ -42,6 +43,12 @@ namespace RPG.Enemy
 
         [SerializeField]
         private int enemyExp;
+
+        private float gravity = -9.81f;
+        private bool isGrounded;
+        private Vector3 calcVelocity = Vector3.zero;
+
+        private CharacterController controller;
 
         #endregion Variables
 
@@ -66,6 +73,8 @@ namespace RPG.Enemy
 
         protected override void Start()
         {
+            controller = GetComponent<CharacterController>();
+
             base.Start();
 
             stateMachine.AddState(new MoveState());
@@ -186,8 +195,9 @@ namespace RPG.Enemy
                 {
                     battleUI.enabled = false;
                 }
-                playerStats.AddExp(enemyExp);
+                StatsManager.Instance.SetEXP(enemyExp);
                 ItemDrop();
+                QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, EnemyID);
                 stateMachine.ChangeState<DeadState>();
             }
         }

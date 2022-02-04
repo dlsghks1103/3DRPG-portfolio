@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 1098568827223580445}
   - component: {fileID: 8802115646092295377}
   m_Layer: 6
-  m_Name: Enemy1 1
+  m_Name: Enemy backup
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,8 +627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed13313c39a1fd74faed94e93eca3119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 15
-  viewAngle: 180
+  viewRadius: 10
+  viewAngle: 275
   delay: 0.2
   targetMask:
     serializedVersion: 2
@@ -690,12 +690,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoint: {fileID: 8802417937196032655}
   waypoints: []
-  playerStats: {fileID: 11400000, guid: 9fd34ff7895c1a5448c1abe1ff195a9d, type: 2}
   battleUI: {fileID: 1650394597606671961}
   itemPrefab: {fileID: 6355617181222006717, guid: fcb090119e47c6f44a99d14974333dc3, type: 3}
   itemDatabase: {fileID: 11400000, guid: 4ead3c0b0e8a1fe48a65151750e57a8f, type: 2}
   projectilePoint: {fileID: 0}
-  enemyExp: 320
+  enemyExp: 50
   attackBehaviours:
   - {fileID: 1098568827223580445}
 --- !u!114 &1098568827223580445
@@ -1025,7 +1024,6 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

@@ -7,10 +7,11 @@ public class EnemyManager : MonoBehaviour
 
     public Transform[] spawnPoints;
     
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
 
     public float respawnTime = 0f;
-    public int maxEnemy = 5;
+    public int maxEnemy = 6;
+    public float spawnRange = 20;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class EnemyManager : MonoBehaviour
 
         if (spawnPoints.Length > 0)
         {
-            StartCoroutine(CreateEnemy2());
+            StartCoroutine(CreateEnemy());
         }
     }
 
@@ -28,16 +29,11 @@ public class EnemyManager : MonoBehaviour
         {
             int enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
-            if (enemyCount <1)
+            if (enemyCount < maxEnemy)
             {
                 yield return new WaitForSeconds(respawnTime);
-
-                for (int i = 1; i <= spawnPoints.Length; i++) 
-                {
-                    Vector3 setPoint = new Vector3(spawnPoints[i].position.x, 0, spawnPoints[i].position.z);
-
-                    Instantiate(enemyPrefab, setPoint, spawnPoints[i].rotation);
-                }
+                SpawnEnemy1();
+                SpawnEnemy2();
             }
             else
             {
@@ -60,7 +56,7 @@ public class EnemyManager : MonoBehaviour
 
                 Vector3 setPoint = new Vector3(spawnPoints[i].position.x, 0, spawnPoints[i].position.z);
 
-                Instantiate(enemyPrefab, setPoint, spawnPoints[i].rotation);
+                //Instantiate(enemyPrefab, setPoint, spawnPoints[i].rotation);
             }
             else
             {
@@ -69,5 +65,24 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private void SpawnEnemy1()
+    {
+        float pointX = Random.Range(spawnPoints[1].position.x - spawnRange, spawnPoints[1].position.x + spawnRange);
+        float pointZ = Random.Range(spawnPoints[1].position.z - spawnRange, spawnPoints[1].position.z + spawnRange);
+
+        Vector3 setPoint = new Vector3(pointX, 0, pointZ);
+
+        Instantiate(enemyPrefab[0], setPoint, spawnPoints[0].rotation);
+    }
+
+    private void SpawnEnemy2()
+    {
+        float pointX = Random.Range(spawnPoints[2].position.x - spawnRange, spawnPoints[2].position.x + spawnRange);
+        float pointZ = Random.Range(spawnPoints[2].position.z - spawnRange, spawnPoints[2].position.z + spawnRange);
+
+        Vector3 setPoint = new Vector3(pointX, 0, pointZ);
+
+        Instantiate(enemyPrefab[1], setPoint, spawnPoints[0].rotation);
+    }
 
 }

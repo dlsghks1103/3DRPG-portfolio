@@ -44,15 +44,15 @@ namespace RPG.AI
             }
 
             isGrounded = controller.isGrounded;
-            if (isGrounded && agent.velocity.y < 0)
+            if (isGrounded && calcVelocity.y < 0)
             {
                 calcVelocity.y = 0f;
             }
 
             calcVelocity.y += gravity * Time.deltaTime;
 
-            controller.Move(calcVelocity * Time.deltaTime);
-
+            //controller.Move(calcVelocity * Time.deltaTime);
+    
             controller.Move(agent.velocity * Time.deltaTime);
 
             if (agent.remainingDistance > agent.stoppingDistance)
