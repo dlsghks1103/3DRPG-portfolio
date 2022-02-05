@@ -13,6 +13,7 @@ public enum AttributeType
     Mana,
     Level,
     Exp,
+    Gold,
 }
 
 [Serializable]

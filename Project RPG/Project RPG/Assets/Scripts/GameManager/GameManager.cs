@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.InventorySystem.UIs;
+using RPG.ItemShopSystem;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ItemShopUI itemShopUI;
+    public StaticInventoryUI staticInventoryUI;
+    public DynamicInventoryUI dynamicInventory;
+
+    private static GameManager instance;
+
+    public static GameManager Instance => instance;
+
+    private void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CloseUI()
     {
-        
+        itemShopUI.gameObject.SetActive(false);
+        staticInventoryUI.gameObject.SetActive(false);
+        dynamicInventory.gameObject.SetActive(false);
     }
 }

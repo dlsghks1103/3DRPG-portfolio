@@ -21,8 +21,9 @@ MonoBehaviour:
     name: Healing Portion
     buffs:
     - stat: 4
-      value: 10
-      min: 10
-      max: 10
+      value: 100
+      min: 100
+      max: 100
+    price: 5
   boneNames: []
   description: 

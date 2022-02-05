@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.EventSystems;
 
+
 namespace RPG.PlyerController
 {
     [RequireComponent(typeof(PlayerInput))]
@@ -76,7 +77,15 @@ namespace RPG.PlyerController
 
             if (!isOnUI && playerInput.NPCInteractInput)
             {
-                NPCInteract();
+                GameManager.Instance.CloseUI();
+
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 100))
+                {
+                    target = hit.collider.transform;
+                    NPCInteract(target);
+                }
             }
 
             if (playerStats.MaxMana > playerStats.Mana && isCoroutine)
@@ -273,16 +282,9 @@ namespace RPG.PlyerController
                 }
             }
         }
-        #region Quest
-        private void NPCInteract()
+        #region NPCInteract
+        private void NPCInteract(Transform target)
         {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                target = hit.collider.transform;
-            }
-
             if (target != null)
             {
                 if (target.GetComponent<IInteractable>() != null)
@@ -313,6 +315,5 @@ namespace RPG.PlyerController
                 Attack();
             }
         }
-
     }
 }

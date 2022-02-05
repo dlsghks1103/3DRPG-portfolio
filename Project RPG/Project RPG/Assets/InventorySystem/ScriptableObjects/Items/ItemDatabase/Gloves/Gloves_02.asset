@@ -24,6 +24,7 @@ MonoBehaviour:
       value: 5
       min: 5
       max: 5
+    price: 50
   boneNames:
   - Guardian-Bip001 L Finger1
   - Guardian-Bip001 L Finger02

@@ -29,7 +29,6 @@ namespace RPG.StatsSystem
         {
             statsObject.AddExp(exp);
         }
-
         #endregion Methods
     }
 }

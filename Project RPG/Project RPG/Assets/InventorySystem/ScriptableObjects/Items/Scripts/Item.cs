@@ -13,6 +13,8 @@ namespace RPG.InventorySystem.Items
 
         public ItemBuff[] buffs;
 
+        public int price;
+
         public Item()
         {
             id = -1;

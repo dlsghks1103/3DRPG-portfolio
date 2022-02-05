@@ -11,6 +11,7 @@ public class PlayerInGameUI : MonoBehaviour
     public Text healthText;
     public Text manaText;
     public Text expText;
+    public Text goldText;
     public Slider expSlider;
     public Slider healthSlider;
     public Slider manaSlider;
@@ -31,6 +32,7 @@ public class PlayerInGameUI : MonoBehaviour
         manaText.text = statsObject.ManaState;
         levelText.text = statsObject.Level.ToString("n0");
         expText.text = statsObject.ExpState;
+        goldText.text = statsObject.Gold.ToString();
     }
 
     private void OnEnable()
@@ -51,6 +53,7 @@ public class PlayerInGameUI : MonoBehaviour
         manaSlider.value = statsObject.ManaPercentage;
         healthText.text = statsObject.HealthState;
         manaText.text = statsObject.ManaState;
+        goldText.text = statsObject.Gold.ToString();
     }
 
     private void OnChangedExp(StatsObject statsObject)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using RPG.InventorySystem.Items;
 using RPG.InventorySystem.UIs;
 
@@ -12,6 +13,8 @@ public class UIManager : MonoBehaviour
 
     public StaticInventoryUI equipmentUI;
     public DynamicInventoryUI inventoryUI;
+    [SerializeField]
+    public ScrollRect scrollView;
 
     private void Awake()
     {
@@ -35,5 +38,10 @@ public class UIManager : MonoBehaviour
     {
         inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
         equipmentUI.gameObject.SetActive(!equipmentUI.gameObject.activeSelf);
+    }
+
+    public void OnClickQuestUIButton()
+    {
+        scrollView.gameObject.SetActive(!scrollView.gameObject.activeSelf);
     }
 }

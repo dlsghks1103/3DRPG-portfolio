@@ -24,6 +24,11 @@ public class StatsObject : ScriptableObject
         get; set;
     }
 
+    public int Gold
+    {
+        get; set;
+    }
+
     public int Health
     {
         get; set;
@@ -257,6 +262,13 @@ public class StatsObject : ScriptableObject
         return Exp;
     }
 
+    public int AddGold(int value)
+    {
+        Gold += value;
+        OnChangedStats?.Invoke(this);
+        return Gold;
+    }
+
     [NonSerialized]
     private bool isInitialized = false;
 
@@ -283,11 +295,13 @@ public class StatsObject : ScriptableObject
         SetBaseValue(AttributeType.Mana, 200);
         SetBaseValue(AttributeType.Level, 0);
         SetBaseValue(AttributeType.Exp, 0);
+        SetBaseValue(AttributeType.Gold, 1000);
 
         Health = GetModifiedValue(AttributeType.Health);
         Mana = GetModifiedValue(AttributeType.Mana);
         Level = GetModifiedValue(AttributeType.Level);
         Exp = GetModifiedValue(AttributeType.Exp);
+        Gold = GetModifiedValue(AttributeType.Gold);
 
         SetLevelTableL();
     }

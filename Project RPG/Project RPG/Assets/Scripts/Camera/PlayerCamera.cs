@@ -17,7 +17,7 @@ namespace RPG.PlayerCamera
 		{
 			SetPosition(Target.transform.position);
 
-			if (Input.GetMouseButton(1)) 
+			if (Input.multiTouchEnabled) 
 			{ 
 				Vector2 CameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 				UpdateControlRotation();

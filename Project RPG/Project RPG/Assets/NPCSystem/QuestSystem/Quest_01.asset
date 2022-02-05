@@ -17,10 +17,10 @@ MonoBehaviour:
     type: 0
     targetId: 0
     count: 2
-    completedCount: 2
+    completedCount: 0
     rewardExp: 100
     rewardGold: 300
     rewardItemId: 0
     title: "\uB9C8\uC744\uC8FC\uBCC0 \uAC70\uBBF8\uB97C \uC7A1\uC544\uB77C1"
     description: 
-  status: 3
+  status: 0

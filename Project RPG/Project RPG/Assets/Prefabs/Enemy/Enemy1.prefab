@@ -688,6 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df62aa9caaf74774097d0552c94b6a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyID: 0
   hitPoint: {fileID: 8802417937196032655}
   waypoints: []
   battleUI: {fileID: 1650394597606671961}
@@ -695,6 +696,7 @@ MonoBehaviour:
   itemDatabase: {fileID: 11400000, guid: 4ead3c0b0e8a1fe48a65151750e57a8f, type: 2}
   projectilePoint: {fileID: 0}
   enemyExp: 50
+  enemyGold: 50
   attackBehaviours:
   - {fileID: 1098568827223580445}
 --- !u!114 &1098568827223580445

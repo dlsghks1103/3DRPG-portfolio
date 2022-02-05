@@ -44,6 +44,9 @@ namespace RPG.Enemy
         [SerializeField]
         private int enemyExp;
 
+        [SerializeField]
+        private int enemyGold;
+
         private float gravity = -9.81f;
         private bool isGrounded;
         private Vector3 calcVelocity = Vector3.zero;
@@ -195,7 +198,8 @@ namespace RPG.Enemy
                 {
                     battleUI.enabled = false;
                 }
-                StatsManager.Instance.SetEXP(enemyExp);
+                StatsManager.Instance.statsObject.AddExp(enemyExp);
+                StatsManager.Instance.statsObject.AddGold(enemyGold);
                 ItemDrop();
                 QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, EnemyID);
                 stateMachine.ChangeState<DeadState>();
@@ -246,7 +250,7 @@ namespace RPG.Enemy
 
         private ItemObject RandomDrop()
         {
-            int random =Random.Range(0, itemDatabase.itemObjects.Length);
+            int random =Random.Range(0, itemDatabase.itemObjects.Length-1);
 
             return itemDatabase.itemObjects[random];
         }

@@ -24,6 +24,7 @@ MonoBehaviour:
       value: 5
       min: 5
       max: 5
+    price: 100
   boneNames:
   - Guardian-Bip001 L Calf
   - Guardian-Bip001 L Thigh

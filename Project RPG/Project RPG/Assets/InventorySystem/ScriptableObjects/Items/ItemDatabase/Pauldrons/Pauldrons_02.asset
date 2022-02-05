@@ -24,5 +24,6 @@ MonoBehaviour:
       value: 5
       min: 5
       max: 5
+    price: 400
   boneNames: []
   description: 

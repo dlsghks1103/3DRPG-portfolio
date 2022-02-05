@@ -895,6 +895,7 @@ MonoBehaviour:
   itemDatabase: {fileID: 11400000, guid: 4ead3c0b0e8a1fe48a65151750e57a8f, type: 2}
   projectilePoint: {fileID: 0}
   enemyExp: 50
+  enemyGold: 50
   attackBehaviours:
   - {fileID: 73789174715937601}
 --- !u!114 &73789174715937601
