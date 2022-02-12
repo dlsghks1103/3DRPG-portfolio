@@ -52,8 +52,11 @@ namespace RPG.ItemShopSystem
 
         public void OnClick(GameObject Go, PointerEventData data)
         {
+            
             if (data.button == PointerEventData.InputButton.Left)
             {
+                BuyItem(Go);
+
                 if (data.clickCount >= 2)
                 {
                     BuyItem(Go);

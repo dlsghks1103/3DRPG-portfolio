@@ -7,7 +7,7 @@ using RPG.Core;
 [Serializable]
 public class ModifiableInt
 {
-    [NonSerialized]
+    [SerializeField]
     private int baseValue;
 
     [SerializeField]

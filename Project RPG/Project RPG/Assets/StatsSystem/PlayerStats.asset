@@ -15,28 +15,37 @@ MonoBehaviour:
   attributes:
   - type: 0
     value:
+      baseValue: 5
       modifiedValue: 5
   - type: 1
     value:
+      baseValue: 1
       modifiedValue: 1
   - type: 2
     value:
+      baseValue: 1
       modifiedValue: 1
   - type: 3
     value:
+      baseValue: 5
       modifiedValue: 5
   - type: 4
     value:
+      baseValue: 1000
       modifiedValue: 1000
   - type: 5
     value:
+      baseValue: 200
       modifiedValue: 200
   - type: 6
     value:
+      baseValue: 0
       modifiedValue: 0
   - type: 7
     value:
+      baseValue: 0
       modifiedValue: 0
   - type: 8
     value:
-      modifiedValue: 1000
+      baseValue: 3000
+      modifiedValue: 3000

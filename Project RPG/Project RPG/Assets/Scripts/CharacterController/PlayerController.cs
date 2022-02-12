@@ -49,9 +49,21 @@ namespace RPG.PlyerController
 
         private int skillIndex = 0;
 
+        private int pointerID = 0;
+
+
+
         public bool AttackInProgress { get; private set; } = false;
         private void Start()
         {
+#if UNITY_EDITOR
+            pointerID = -1;
+#endif
+
+#if UNITY_ANDROID
+            pointerID = 0;
+#endif
+
             //inventory.OnUseItem += OnUseItem;
 
             animator = GetComponent<Animator>();
@@ -71,7 +83,7 @@ namespace RPG.PlyerController
             CheckAttackBehaviour();
             CheckSkillAttackBehaviour();
 
-            bool isOnUI = EventSystem.current.IsPointerOverGameObject();
+            bool isOnUI = EventSystem.current.IsPointerOverGameObject(pointerID);
 
             if (!isOnUI && playerInput.AttackInput && !AttackInProgress&& playerStats.Mana >0)
             {
