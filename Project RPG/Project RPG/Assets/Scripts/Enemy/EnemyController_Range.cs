@@ -33,7 +33,7 @@ namespace RPG.Enemy
         [SerializeField]
         private ItemDatabaseObject itemDatabase;
 
-        public float maxHealth => 10f;
+        public float maxHealth => 100f;
         private float health;
 
         private int hitTriggerHash = Animator.StringToHash("HitTrigger");

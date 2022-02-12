@@ -20,7 +20,7 @@ namespace RPG.InventorySystem.Inventory
         [SerializeField]
         private Inventory container = new Inventory();
 
-        public Action<InventorySlot> OnUseItem;
+        //public Action<InventorySlot> OnUseItem;
 
         #endregion Variables
 
@@ -135,14 +135,14 @@ namespace RPG.InventorySystem.Inventory
             {
                 return;
             }
-
+            /*
             if (slotToUse.ItemObject.stackable)
             {
                 //ItemObject itemObject = slotToUse.ItemObject;
                 //slotToUse.UpdateSlot(slotToUse.item, slotToUse.amount - 1);
                 OnUseItem.Invoke(slotToUse);
             }
-
+            */
             else if (!slotToUse.ItemObject.stackable)
             {
                 return;

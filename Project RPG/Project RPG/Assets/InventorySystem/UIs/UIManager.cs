@@ -37,6 +37,10 @@ public class UIManager : MonoBehaviour
     public void OnClickInventoryButton()
     {
         inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+    }
+
+    public void OnClickEquipmentButton()
+    {
         equipmentUI.gameObject.SetActive(!equipmentUI.gameObject.activeSelf);
     }
 

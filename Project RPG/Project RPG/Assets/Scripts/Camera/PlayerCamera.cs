@@ -16,10 +16,13 @@ namespace RPG.PlayerCamera
 		private void Update()
 		{
 			SetPosition(Target.transform.position);
+			/*
+			if (Input.multiTouchEnabled && false) 
+			{
+				
 
-			if (Input.multiTouchEnabled) 
-			{ 
 				Vector2 CameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
 				UpdateControlRotation();
 
 				// Adjust the pitch angle (X Rotation)
@@ -33,7 +36,7 @@ namespace RPG.PlayerCamera
 				controllRotation = new Vector2(pitchAngle, yawAngle);
 				SetControlRotation(controllRotation);
 			}
-			
+			*/
 		}
 
 		public void SetPosition(Vector3 position)

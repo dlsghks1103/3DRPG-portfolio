@@ -18,145 +18,181 @@ MonoBehaviour:
     slots:
     - AllowedItems: 
       item:
+        id: 8
+        name: HealPortion
+        buffs:
+        - stat: 4
+          value: 100
+          min: 100
+          max: 100
+        price: 0
+      amount: 8
+    - AllowedItems: 
+      item:
+        id: 6
+        name: Shields_02
+        buffs:
+        - stat: 3
+          value: 10
+          min: 10
+          max: 10
+        price: 0
+      amount: 1
+    - AllowedItems: 
+      item:
+        id: 5
+        name: Pauldrons_02
+        buffs:
+        - stat: 5
+          value: 5
+          min: 5
+          max: 5
+        price: 0
+      amount: 1
+    - AllowedItems: 
+      item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
+        price: 0
       amount: 0
     - AllowedItems: 
       item:
         id: -1
         name: 
         buffs: []
-      amount: 0
-    - AllowedItems: 
-      item:
-        id: -1
-        name: 
-        buffs: []
-      amount: 0
-    - AllowedItems: 
-      item:
-        id: -1
-        name: 
-        buffs: []
-      amount: 0
-    - AllowedItems: 
-      item:
-        id: -1
-        name: 
-        buffs: []
+        price: 0
       amount: 0

@@ -63,11 +63,16 @@ namespace RPG.InventorySystem.UIs
         
         protected override void OnRightClick(InventorySlot slot)
         {
-            inventoryObject.UseItem(slot);
+            //inventoryObject.UseItem(slot);
         }
 
-        
-        protected override void OnLeftDoubleClick(InventorySlot slot)
+        protected override void OnLeftClick(InventorySlot slot)
+        {
+            InformationUIManager.Instance.ViewItemInformation(slot);
+        }
+
+
+        public override void OnLeftDoubleClick(InventorySlot slot)
         {
             InventorySlot[] staticSlot= staticInventoryUI.inventoryObject.Slots;
 

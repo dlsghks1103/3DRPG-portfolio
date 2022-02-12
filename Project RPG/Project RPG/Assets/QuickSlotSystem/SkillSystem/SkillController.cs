@@ -5,55 +5,57 @@ using UnityEngine.UI;
 using RPG.CharacterControl;
 using RPG.PlyerController;
 
-public class SkillController : MonoBehaviour
+namespace RPG.Skill
 {
-    public Combat Combat;
-    public GameObject effectPrefabs;
-    public Transform effectPoint;
-
-    public float coolTime = 0;
-    public Image coolTimeImage;
-
-    public int useMana = 0;
-
-    public int animationIndex = 0;
-
-    public bool IsCoolTime = true;
-
-    private void Update()
+    public class SkillController : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)&& IsCoolTime)
-        {
-            UseSkill();
-        }
-    }
+        public StatsObject playerStats;
+        public GameObject effectPrefabs;
+        public Transform effectPoint;
+        public float coolTime = 0;
+        public Image coolTimeImage;
 
-    public void UseSkill()
-    {
-        float skillCoolTime = coolTime;
+        public int useMana = 0;
 
-        if(IsCoolTime)
+        public int animationIndex = 0;
+
+        public bool IsCoolTime = true;
+
+        private void Update()
         {
-            Combat.SkillAttack(useMana);
-            if (effectPrefabs)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && IsCoolTime)
             {
-                Instantiate<GameObject>(effectPrefabs, effectPoint);
+                UseSkill();
             }
-
-            StartCoroutine(SkillCoolTime(skillCoolTime));
         }
-    }
 
-    IEnumerator SkillCoolTime(float skillCoolTime)
-    {
-        IsCoolTime = false;
-
-        while (skillCoolTime > 1.0f)
+        public void UseSkill()
         {
-            skillCoolTime -= Time.deltaTime;
-            coolTimeImage.fillAmount = (1.0f / skillCoolTime);
-            yield return new WaitForFixedUpdate();
+            float skillCoolTime = coolTime;
+
+            if (IsCoolTime && playerStats.Mana > useMana)
+            {
+                GameManager.Instance.playerController.SkillAttack(useMana, animationIndex);
+                if (effectPrefabs)
+                {
+                    Instantiate<GameObject>(effectPrefabs, effectPoint);
+                }
+
+                StartCoroutine(SkillCoolTime(skillCoolTime));
+            }
         }
-        IsCoolTime = true;
+
+        IEnumerator SkillCoolTime(float skillCoolTime)
+        {
+            IsCoolTime = false;
+
+            while (skillCoolTime > 1.0f)
+            {
+                skillCoolTime -= Time.deltaTime;
+                coolTimeImage.fillAmount = (1.0f / skillCoolTime);
+                yield return new WaitForFixedUpdate();
+            }
+            IsCoolTime = true;
+        }
     }
 }

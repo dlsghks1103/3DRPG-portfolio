@@ -104,7 +104,7 @@ namespace RPG.Enemy
             {
                 //It matched one
                 Debug.Log("Attack Trigger: " + other.name);
-                //Combat playerCharacter = other.gameObject.GetComponent<Combat>();
+                //PlayerController playerCharacter = other.gameObject.GetComponent<PlayerController>();
                 //playerCharacter?.TakeDamage(10, hitEffect);
 
             }

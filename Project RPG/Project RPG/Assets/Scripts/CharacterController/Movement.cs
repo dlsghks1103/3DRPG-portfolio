@@ -34,7 +34,7 @@ namespace RPG.PlyerController
 
         private Animator animator;
         private PlayerInput playerInput;
-        private Combat combat;
+        private PlayerController PlayerController;
 
         readonly int InputX = Animator.StringToHash("InputX");
         readonly int InputY = Animator.StringToHash("InputY");
@@ -48,7 +48,7 @@ namespace RPG.PlyerController
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
             playerInput = GetComponent<PlayerInput>();
-            combat = GetComponent<Combat>();
+            PlayerController = GetComponent<PlayerController>();
         }
 
         // Update is called once per frame
@@ -63,7 +63,7 @@ namespace RPG.PlyerController
 
             if (animator == null) return;
 
-            if (combat.AttackInProgress)
+            if (PlayerController.AttackInProgress)
             {
                 StopMovementOnAttack();
             }

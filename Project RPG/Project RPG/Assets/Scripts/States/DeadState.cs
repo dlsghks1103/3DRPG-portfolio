@@ -26,7 +26,7 @@ namespace RPG.AI
 
         public override void Update(float deltaTime)
         {
-            if (stateMachine.ElapsedTimeInState > 3.0f)
+            if (stateMachine.ElapsedTimeInState > 1.0f)
             {
                 GameObject.Destroy(context.gameObject);
             }

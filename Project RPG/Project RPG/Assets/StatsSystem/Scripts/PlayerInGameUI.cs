@@ -31,7 +31,7 @@ public class PlayerInGameUI : MonoBehaviour
         healthText.text = statsObject.HealthState;
         manaText.text = statsObject.ManaState;
         levelText.text = statsObject.Level.ToString("n0");
-        expText.text = statsObject.ExpState;
+        expText.text = "0%";
         goldText.text = statsObject.Gold.ToString();
     }
 
@@ -58,8 +58,10 @@ public class PlayerInGameUI : MonoBehaviour
 
     private void OnChangedExp(StatsObject statsObject)
     {
+        float expPer = statsObject.ExpPercentage * 100;
+
         expSlider.value = statsObject.ExpPercentage;
         levelText.text = statsObject.Level.ToString("n0");
-        expText.text = statsObject.ExpState;
+        expText.text = expPer.ToString() + " %";
     }
 }

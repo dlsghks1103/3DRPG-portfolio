@@ -177,7 +177,7 @@ namespace RPG.InventorySystem.UIs
         {
         }
 
-        protected virtual void OnLeftDoubleClick(InventorySlot slot)
+        public virtual void OnLeftDoubleClick(InventorySlot slot)
         {
         }
 

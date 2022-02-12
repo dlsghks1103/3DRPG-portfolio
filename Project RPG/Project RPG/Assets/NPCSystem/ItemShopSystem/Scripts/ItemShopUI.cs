@@ -28,7 +28,7 @@ namespace RPG.ItemShopSystem
                 itemShopSlot[i].transform.GetChild(0).GetComponent<Image>().sprite = itemDatabase.itemObjects[i].icon;
                 itemShopSlot[i].GetComponentInChildren<Text>().text = itemDatabase.itemObjects[i].data.price.ToString() + " Gold";
 
-               GameObject slotGO = itemShopSlot[i];
+                GameObject slotGO = itemShopSlot[i];
 
                 AddEvent(slotGO, EventTriggerType.PointerClick, (data) => { OnClick(slotGO, (PointerEventData)data); });
 

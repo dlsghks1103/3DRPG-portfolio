@@ -19,6 +19,7 @@ namespace RPG.ItemShopSystem
             }
 
             GameManager.Instance.itemShopUI.gameObject.SetActive(!GameManager.Instance.itemShopUI.gameObject.activeSelf);
+            GameManager.Instance.dynamicInventory.gameObject.SetActive(!GameManager.Instance.dynamicInventory.gameObject.activeSelf);
         }
 
         public void StopInteract(GameObject other)

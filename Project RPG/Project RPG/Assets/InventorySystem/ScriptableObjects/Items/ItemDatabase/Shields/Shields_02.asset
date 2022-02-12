@@ -18,7 +18,7 @@ MonoBehaviour:
   modelPrefab: {fileID: 100086, guid: 16eac2512270fcc4d9c34d7136b7aad1, type: 3}
   data:
     id: 6
-    name: 
+    name: "\uD574\uACE8\uBC29\uD328"
     buffs:
     - stat: 3
       value: 10
