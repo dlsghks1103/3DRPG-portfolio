@@ -60,7 +60,6 @@ namespace RPG.InventorySystem.UIs
             return new Vector3(x, y, 0f);
         }
 
-        
         protected override void OnRightClick(InventorySlot slot)
         {
             //inventoryObject.UseItem(slot);
@@ -70,7 +69,6 @@ namespace RPG.InventorySystem.UIs
         {
             InformationUIManager.Instance.ViewItemInformation(slot);
         }
-
 
         public override void OnLeftDoubleClick(InventorySlot slot)
         {

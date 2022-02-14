@@ -10,15 +10,19 @@ namespace RPG.QuickSlot.Protion
 {
     public class PortionController : MonoBehaviour
     {
+        #region Variables
         public TextMeshProUGUI textMeshPro;
         public QuickSlotObject quickSlotObject;
-        
+        #endregion Variables
 
+        #region Unity Methods
         private void Start()
         {
             textMeshPro.text = quickSlotObject.amount.ToString();
         }
+        #endregion Unity Methods
 
+        #region Methods
         public void SwapPortionSlot(InventorySlot slot)
         {
             if (slot == null)
@@ -44,5 +48,6 @@ namespace RPG.QuickSlot.Protion
                 textMeshPro.text = quickSlotObject.amount.ToString();
             }
         }
+        #endregion Methods
     }
 }

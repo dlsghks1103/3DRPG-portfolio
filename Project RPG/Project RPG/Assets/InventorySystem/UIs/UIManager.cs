@@ -7,15 +7,19 @@ using RPG.InventorySystem.UIs;
 
 public class UIManager : MonoBehaviour
 {
+    #region Variables
     public static UIManager Instance;
 
     public ItemDatabaseObject itemDatabase;
 
     public StaticInventoryUI equipmentUI;
     public DynamicInventoryUI inventoryUI;
+
     [SerializeField]
     public ScrollRect scrollView;
+    #endregion Variables
 
+    #region Unity Methods
     private void Awake()
     {
         
@@ -48,7 +52,9 @@ public class UIManager : MonoBehaviour
             equipmentUI.gameObject.SetActive(!equipmentUI.gameObject.activeSelf);
         }
     }
+    #endregion Unity Methods
 
+    #region Methods
     public void OnClickInventoryButton()
     {
         inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
@@ -63,4 +69,5 @@ public class UIManager : MonoBehaviour
     {
         scrollView.gameObject.SetActive(!scrollView.gameObject.activeSelf);
     }
+    #endregion Methods
 }

@@ -5,6 +5,7 @@ namespace RPG.PlayerCameraSystem
 {
 	public class PlayerCamera : MonoBehaviour
 	{
+		#region Variables
 		public float ControlRotationSensitivity = 0.0f;
 		public Transform Rig; // The root transform of the camera rig
 		public Transform Pivot; // The point at which the camera pivots around
@@ -14,11 +15,14 @@ namespace RPG.PlayerCameraSystem
 		public bool isUIBtnDown;
 
 		private bool isOnUI = false;
+
 		private int pointerID = 0;
 
 		private Vector3 _cameraVelocity;
 		Vector2 controllRotation;
+		#endregion Variables
 
+		#region Unity Methods
 		private void Awake()
 		{
 			var obj = FindObjectsOfType<PlayerCamera>();
@@ -70,9 +74,10 @@ namespace RPG.PlayerCameraSystem
 				controllRotation = new Vector2(pitchAngle, yawAngle);
 				SetControlRotation(controllRotation);
 			}
-			
 		}
+		#endregion Unity Methods
 
+		#region Methods
 		public void SetPosition(Vector3 position)
 		{
 			Rig.position = position;
@@ -113,5 +118,6 @@ namespace RPG.PlayerCameraSystem
 		{
 			isUIBtnDown = false;
 		}
+		#endregion Methods
 	}
 }

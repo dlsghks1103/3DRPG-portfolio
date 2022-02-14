@@ -7,12 +7,19 @@ using RPG.Core;
 [Serializable]
 public class ModifiableInt
 {
+    #region Variables
     [SerializeField]
     private int baseValue;
 
     [SerializeField]
     private int modifiedValue;
 
+    private event Action<ModifiableInt> OnModifiedValue;
+
+    private List<IModifier> modifiers = new List<IModifier>();
+    #endregion Variables
+
+    #region Properties
     public int BaseValue
     {
         get => baseValue;
@@ -28,11 +35,9 @@ public class ModifiableInt
         get => modifiedValue;
         set => modifiedValue = value;
     }
+    #endregion Properties
 
-    private event Action<ModifiableInt> OnModifiedValue;
-
-    private List<IModifier> modifiers = new List<IModifier>();
-
+    #region Methods
     public ModifiableInt(Action<ModifiableInt> method = null)
     {
         ModifiedValue = baseValue;
@@ -80,4 +85,5 @@ public class ModifiableInt
         modifiers.Remove(modifier);
         UpdateModifiedValue();
     }
+    #endregion Methods
 }

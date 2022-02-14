@@ -9,19 +9,25 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    int clickCount = 0;
-
+    #region Variables
     public ItemShopUI itemShopUI;
     public StaticInventoryUI staticInventoryUI;
-    public DynamicInventoryUI dynamicInventory;
-    public PlayerController playerController;
     public InformationUIManager informationUI;
+    public DynamicInventoryUI dynamicInventory;
+
+    public PlayerController playerController;
     public PortionController portionController;
 
     private static GameManager instance;
 
-    public static GameManager Instance => instance;
+    int clickCount = 0;
+    #endregion Variables
 
+    #region Properties
+    public static GameManager Instance => instance;
+    #endregion Properties
+
+    #region Unity Methods
     private void Awake()
     {
         var obj = FindObjectsOfType<GameManager>();
@@ -56,7 +62,9 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
     }
+    #endregion Unity Methods
 
+    #region Methods
     public void CloseUI()
     {
         if (itemShopUI != null)
@@ -71,4 +79,5 @@ public class GameManager : MonoBehaviour
     {
         clickCount = 0;
     }
+    #endregion Methods
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerInGameUI : MonoBehaviour
 {
+    #region Variables
     public StatsObject statsObject;
 
     public Text levelText;
@@ -15,7 +16,9 @@ public class PlayerInGameUI : MonoBehaviour
     public Slider expSlider;
     public Slider healthSlider;
     public Slider manaSlider;
+    #endregion Variables
 
+    #region Unity Methods
     void Start()
     {
         levelText.text = statsObject.Level.ToString("n0");
@@ -46,7 +49,9 @@ public class PlayerInGameUI : MonoBehaviour
         statsObject.OnChangedStats -= OnChangedStats;
         statsObject.OnChangedExp -= OnChangedExp;
     }
+    #endregion Unity Methods
 
+    #region Methods
     private void OnChangedStats(StatsObject statsObject)
     {
         healthSlider.value = statsObject.HealthPercentage;
@@ -64,4 +69,5 @@ public class PlayerInGameUI : MonoBehaviour
         levelText.text = statsObject.Level.ToString("n0");
         expText.text = expPer.ToString() + " %";
     }
+    #endregion Methods
 }

@@ -9,24 +9,16 @@ namespace RPG.InventorySystem.Character
 {
     public class PlayerEquipment : MonoBehaviour
     {
+        #region Variables
         public InventoryObject equipment;
-
-        //[Header("Equipment Transforms")]
-        //[SerializeField]
-        //private Transform leftShieldTransform;
-        //[SerializeField]
-        //private Transform leftWeaponTransform;
-        //[SerializeField]
-        //private Transform rightWeaponTransform;
-
         private EquipmentCombiner combiner;
-
         private ItemInstances[] itemInstances = new ItemInstances[8];
-
         [Header("Default Equipments: H = 0, C = 1, P = 2, B = 3, Pa = 4, G = 5, LW = 6, RW = 7")]
         public ItemObject[] defaultItemObjects = new ItemObject[8];
 
-        // Use this for initialization
+        #endregion Variables
+
+        #region Unity Methods
         void Awake()
         {
             combiner = new EquipmentCombiner(gameObject);
@@ -45,7 +37,9 @@ namespace RPG.InventorySystem.Character
                 OnEquipItem(slot);
             }
         }
+        #endregion Unity Methods
 
+        #region Methods
         private void OnEquipItem(InventorySlot slot)
         {
             ItemObject itemObject = slot.ItemObject;
@@ -170,5 +164,6 @@ namespace RPG.InventorySystem.Character
                 RemoveItemBy(slot.AllowedItems[0]);
             }
         }
+        #endregion Methods
     }
 }

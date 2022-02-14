@@ -8,13 +8,16 @@ namespace RPG.AI
 {
     public class AttackState : State<EnemyController>
     {
+        #region Variables
         private Animator animator;
         private AttackStateController attackStateController;
         private IAttackable attackable;
 
         protected int attackTriggerHash = Animator.StringToHash("AttackTrigger");
         protected int attackIndexHash = Animator.StringToHash("AttackIndex");
+        #endregion Variables
 
+        #region Methods
         public override void OnInitialized()
         {
             animator = context.GetComponent<Animator>();
@@ -58,5 +61,6 @@ namespace RPG.AI
             UnityEngine.Debug.Log("OnExitAttackState()");
             stateMachine.ChangeState<IdleState>();
         }
+        #endregion Methods
     }
 }

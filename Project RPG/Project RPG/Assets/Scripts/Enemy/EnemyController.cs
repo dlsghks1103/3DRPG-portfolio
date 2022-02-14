@@ -29,7 +29,6 @@ namespace RPG.Enemy
 
         #region Unity Methods
 
-        // Start is called before the first frame update
         protected virtual void Start()
         {
             stateMachine = new StateMachine<EnemyController>(this, new IdleState());
@@ -42,8 +41,6 @@ namespace RPG.Enemy
             fieldOfView = GetComponent<FieldOfView>();
         }
 
-
-        // Update is called once per frame
         protected virtual void Update()
         {
             stateMachine.Update(Time.deltaTime);
@@ -53,6 +50,17 @@ namespace RPG.Enemy
             }
         }
 
+        private void OnAnimatorMove()
+        {
+            Vector3 position = transform.position;
+            position.y = agent.nextPosition.y;
+
+            animator.rootPosition = position;
+            agent.nextPosition = position;
+        }
+        #endregion Unity Methods
+
+        #region Helper Methods
         void FaceTarget()
         {
             if (Target)
@@ -63,30 +71,6 @@ namespace RPG.Enemy
             }
         }
 
-        private void OnAnimatorMove()
-        {
-            // Follow NavMeshAgent
-            //Vector3 position = agent.nextPosition;
-            //animator.rootPosition = agent.nextPosition;
-            //transform.position = position;
-
-            // Follow CharacterController
-            Vector3 position = transform.position;
-            position.y = agent.nextPosition.y;
-
-            animator.rootPosition = position;
-            agent.nextPosition = position;
-
-            // Follow RootAnimation
-            //Vector3 position = animator.rootPosition;
-            //position.y = agent.nextPosition.y;
-
-            //agent.nextPosition = position;
-            //transform.position = position;
-        }
-        #endregion Unity Methods
-
-        #region Helper Methods
         public virtual bool IsAvailableAttack => false;
 
         public R ChangeState<R>() where R : State<EnemyController>

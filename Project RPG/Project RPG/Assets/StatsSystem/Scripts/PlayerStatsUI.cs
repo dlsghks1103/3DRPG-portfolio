@@ -8,11 +8,14 @@ using RPG.Enemy;
 
 public class PlayerStatsUI : MonoBehaviour
 {
+    #region Variables
     public InventoryObject equipment;
     public StatsObject stats;
 
     public Text[] attributeTexts;
+    #endregion Variables
 
+    #region Unity Methods
     private void OnEnable()
     {
         stats.OnChangedStats += OnChangedStats;
@@ -44,7 +47,9 @@ public class PlayerStatsUI : MonoBehaviour
             }
         }
     }
+    #endregion Unity Methods
 
+    #region Methods
     private void UpdateAttributeTexts()
     {
         attributeTexts[0].text = stats.GetBaseValue(AttributeType.Agility) + " ( +" + stats.GetAddValue(AttributeType.Agility) + " )";
@@ -107,4 +112,5 @@ public class PlayerStatsUI : MonoBehaviour
         Debug.Log("OnChangedStats");
         UpdateAttributeTexts();
     }
+    #endregion Methods
 }

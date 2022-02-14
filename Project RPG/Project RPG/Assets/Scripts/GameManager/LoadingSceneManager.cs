@@ -6,15 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class LoadingSceneManager : MonoBehaviour
 {
+    #region Variables
     public static string nextScene;
 
     public Slider slider;
+    #endregion Variables
 
+    #region Unity Methods
     void Start()
     {
         StartCoroutine(LoadScene());
     }
+    #endregion Unity Methods
 
+    #region Methods
     public static void LoadScene(string sceneName)
     {
         nextScene = sceneName;
@@ -50,4 +55,5 @@ public class LoadingSceneManager : MonoBehaviour
             }
         }
     }
+    #endregion Methods
 }

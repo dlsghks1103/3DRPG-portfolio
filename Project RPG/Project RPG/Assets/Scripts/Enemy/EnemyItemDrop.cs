@@ -6,9 +6,12 @@ namespace RPG.UIs
 {
     public class EnemyItemDrop : MonoBehaviour
     {
+        #region Variables
         [SerializeField]
         private GameObject itemPrefab;
+        #endregion Variables
 
+        #region Methods
         private void ItemDrop(Transform transform)
         {
             if (itemPrefab != null)
@@ -17,5 +20,6 @@ namespace RPG.UIs
                 itemGO.transform.parent = transform;
             }
         }
+        #endregion Methods
     }
 }

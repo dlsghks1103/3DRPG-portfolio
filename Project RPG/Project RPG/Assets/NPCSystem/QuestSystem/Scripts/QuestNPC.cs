@@ -11,7 +11,6 @@ namespace RPG.QuestSystem
     {
 
         #region Variables
-        //public int questId = -1;
         public QuestObject questObject;
 
         public Dialogue readyDialogue;
@@ -91,11 +90,13 @@ namespace RPG.QuestSystem
             }
             else if (questObject.status == QuestStatus.Completed)
             {
-                // Reward quest
                 DialogueManager.Instance.StartDialogue(completedDialogue);
+
                 questObject.status = QuestStatus.Rewarded;
+
                 StatsManager.Instance.QuestReward(questObject.data.rewardExp, questObject.data.rewardGold);
                 QuestManager.Instance.EndQuest(questObject);
+
                 questEffectGO.SetActive(false);
                 questRewardGO.SetActive(false);
             }

@@ -17,6 +17,7 @@ namespace RPG.PlyerController
     [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour, IAttackable, IDamagable
     {
+        #region Variables
         [SerializeField]
         private InventoryObject equipment;
 
@@ -57,8 +58,13 @@ namespace RPG.PlyerController
         public GameObject potalUI;
 
         bool isOnUI = false;
+        #endregion Variables
 
+        #region Properties
         public bool AttackInProgress { get; private set; } = false;
+        #endregion Properties
+
+        #region Unity Methods
         private void Awake()
         {
             var obj = FindObjectsOfType<PlayerController>();
@@ -82,8 +88,6 @@ namespace RPG.PlyerController
 #if UNITY_ANDROID
             pointerID = 0;
 #endif
-
-            //inventory.OnUseItem += OnUseItem;
 
             animator = GetComponent<Animator>();
             playerInput = GetComponent<PlayerInput>();
@@ -113,7 +117,7 @@ namespace RPG.PlyerController
             }
             else
             {
-                isOnUI = EventSystem.current.IsPointerOverGameObject(pointerID);
+                isOnUI = EventSystem.current.IsPointerOverGameObject();
             }
 
             if (!isOnUI && playerInput.AttackInput && !AttackInProgress&& playerStats.Mana >0)
@@ -139,7 +143,29 @@ namespace RPG.PlyerController
                 StartCoroutine(RecoveryMana());
             }
         }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<GroundItem>())
+            {
 
+                GroundItem item = other.GetComponent<GroundItem>();
+                if (item)
+                {
+                    if (inventory.AddItem(new Item(item.itemObject), 1))
+                        Destroy(other.gameObject);
+                }
+            }
+            else if (other.GetComponent<PotalSystem>())
+            {
+                PotalSystem loadSceneName = other.GetComponent<PotalSystem>();
+                currentMapName = loadSceneName.potalName;
+                potalUI.gameObject.SetActive(true);
+            }
+        }
+
+        #endregion Unity Methods
+
+        #region Methods
         IEnumerator RecoveryMana()
         {
             isCoroutine = false;
@@ -244,6 +270,29 @@ namespace RPG.PlyerController
             //animator.SetInteger(skillAttackIndexHash, SkillCurrentAttackBehaviour.animationIndex);
             animator.SetInteger(skillAttackIndexHash, skillIndex);
         }
+        public void OnClickGO()
+        {
+            if (currentMapName == "Home")
+            {
+                transform.position = GameObject.Find("StartPoint").transform.position;
+                potalUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                potalUI.gameObject.SetActive(false);
+                LoadingSceneManager.LoadScene(currentMapName);
+            }
+        }
+
+        public void OnClickAttackButton()
+        {
+            if (playerStats.Mana > 0)
+            {
+                Attack();
+            }
+        }
+
+        #endregion Methods
 
         #region IAttackable Interfaces
         [SerializeField]
@@ -339,6 +388,8 @@ namespace RPG.PlyerController
                 }
             }
         }
+        #endregion  Inventory
+
         #region NPCInteract
         private void NPCInteract(Transform target)
         {
@@ -353,48 +404,6 @@ namespace RPG.PlyerController
             }
          }
 
-        #endregion
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.GetComponent<GroundItem>())
-            {
-
-                GroundItem item = other.GetComponent<GroundItem>();
-                if (item)
-                {
-                    if (inventory.AddItem(new Item(item.itemObject), 1))
-                        Destroy(other.gameObject);
-                }
-            }
-            else if (other.GetComponent<PotalSystem>())
-            {
-                PotalSystem loadSceneName = other.GetComponent<PotalSystem>();
-                currentMapName = loadSceneName.potalName;
-                potalUI.gameObject.SetActive(true);
-            }
-        }
-        #endregion Inventory
-
-        public void OnClickGO()
-        {
-            if (currentMapName == "Home")
-            {
-                transform.position = GameObject.Find("StartPoint").transform.position;
-                potalUI.gameObject.SetActive(false);
-            }
-            else
-            {
-                potalUI.gameObject.SetActive(false);
-                LoadingSceneManager.LoadScene(currentMapName);
-            }
-        }
-
-        public void OnClickAttackButton()
-        {
-            if (playerStats.Mana > 0) 
-            {
-                Attack();
-            }
-        }
+        #endregion NPCInteract
     }
 }

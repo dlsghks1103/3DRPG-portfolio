@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class QuickSlotManager : MonoBehaviour
 {
-	private void Awake()
+    #region Unity Methods
+    private void Awake()
 	{
         var obj = FindObjectsOfType<QuickSlotManager>();
 
@@ -17,4 +18,5 @@ public class QuickSlotManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion Unity Methods
 }

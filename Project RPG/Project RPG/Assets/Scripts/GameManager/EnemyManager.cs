@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-
+    #region Variables
     public Transform[] spawnPoints;
     
     public GameObject[] enemyPrefab;
@@ -12,7 +12,9 @@ public class EnemyManager : MonoBehaviour
     public float respawnTime = 0f;
     public int maxEnemy = 6;
     public float spawnRange = 20;
+    #endregion Variables
 
+    #region Unity Methods
     void Start()
     {
         spawnPoints = GameObject.Find("SpawnPoints").GetComponentsInChildren<Transform>();
@@ -22,7 +24,9 @@ public class EnemyManager : MonoBehaviour
             StartCoroutine(CreateEnemy());
         }
     }
+    #endregion Unity Methods
 
+    #region Methods
     IEnumerator CreateEnemy()
     {
         while (true)
@@ -84,5 +88,5 @@ public class EnemyManager : MonoBehaviour
 
         Instantiate(enemyPrefab[1], setPoint, spawnPoints[0].rotation);
     }
-
+    #endregion Methods
 }

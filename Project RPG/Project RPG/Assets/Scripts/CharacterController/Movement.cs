@@ -9,6 +9,7 @@ namespace RPG.PlyerController
     [RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Animator)), RequireComponent(typeof(PlayerInput))]
     public class Movement : MonoBehaviour
     {
+        #region Variables
         [SerializeField]
         private PlayerCamera playerCamera;
 
@@ -47,8 +48,9 @@ namespace RPG.PlyerController
         private bool isGrounded;
 
         Vector3 moveDirection;
+        #endregion Variables
 
-        // Start is called before the first frame update
+        #region Unity Methods
         void Start()
         {
             characterController = GetComponent<CharacterController>();
@@ -89,7 +91,9 @@ namespace RPG.PlyerController
                 characterController.Move(calcVelocity * Time.deltaTime);
             }
         }
+        #endregion Unity Methods
 
+        #region Methods
         private void ProcessMove()
         {
             float _x = Joystick.Horizontal;
@@ -105,17 +109,6 @@ namespace RPG.PlyerController
 
             animator.SetFloat(InputX, _x);
             animator.SetFloat(InputY, _z);
-        }
-
-        private void TestMove()
-        {
-            Vector3 controllerDir = Vector3.forward * Joystick.Vertical;
-            controllerDir += Vector3.right * Joystick.Horizontal;
-
-            Vector3 camPivotAngel = playerCamera.Pivot.rotation.eulerAngles;
-            Vector3 conDirAngel = Quaternion.LookRotation(controllerDir).eulerAngles;
-
-            Vector3 moveAngel = Vector3.up * (conDirAngel.y + camPivotAngel.y);
         }
 
         private void ProcessJump()
@@ -151,5 +144,6 @@ namespace RPG.PlyerController
             animator.SetFloat("InputX", lastMovementInput.x);
             animator.SetFloat("InputY", lastMovementInput.y);
         }
+        #endregion Methods
     }
 }

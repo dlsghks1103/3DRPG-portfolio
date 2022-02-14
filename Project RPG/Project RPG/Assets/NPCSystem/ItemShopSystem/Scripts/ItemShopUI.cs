@@ -13,14 +13,15 @@ namespace RPG.ItemShopSystem
 {
     public class ItemShopUI : MonoBehaviour
     {
+        #region Variables
         public InventoryObject inventory;
-
         public ItemDatabaseObject itemDatabase;
-
         public GameObject[] itemShopSlot = null;
 
         public Dictionary<GameObject, ItemObject> itemShopList = new Dictionary<GameObject, ItemObject>();
+        #endregion Variables
 
+        #region Unity Methods
         void Start()
         {
             for (int i = 0; i < itemDatabase.itemObjects.Length; i++)
@@ -35,7 +36,9 @@ namespace RPG.ItemShopSystem
                 itemShopList.Add(slotGO, itemDatabase.itemObjects[i]);
             }
         }
+        #endregion Unity Methods
 
+        #region Methods
         protected void AddEvent(GameObject go, EventTriggerType type, UnityAction<BaseEventData> action)
         {
             EventTrigger trigger = go.GetComponent<EventTrigger>();
@@ -80,5 +83,6 @@ namespace RPG.ItemShopSystem
                 inventory.AddItem(new Item(itemShopList[buyItemGo]), 1);
             }
         }
+        #endregion Methods
     }
 }

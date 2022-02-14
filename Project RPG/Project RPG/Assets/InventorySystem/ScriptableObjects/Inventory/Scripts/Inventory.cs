@@ -16,9 +16,6 @@ namespace RPG.InventorySystem.Inventory
 
         #endregion Variables
 
-        #region Properties
-        #endregion Properties
-
         #region Methods
 
         public void Clear()

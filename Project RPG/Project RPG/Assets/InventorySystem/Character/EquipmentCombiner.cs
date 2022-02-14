@@ -32,21 +32,17 @@ namespace RPG.InventorySystem.Character
 
         private Transform ProcessBoneObject(SkinnedMeshRenderer renderer, List<string> boneNames)
         {
-            // Create the sub-object
             Transform boneObject = new GameObject().transform;
 
-            // Add the renderer
             SkinnedMeshRenderer meshRenderer = boneObject.gameObject.AddComponent<SkinnedMeshRenderer>();
 
             Transform[] tempBones = new Transform[boneNames.Count];
 
-            // Assemble bone structure
             for (int i = 0; i < boneNames.Count; ++i)
             {
                 tempBones[i] = rootBoneDictionary[boneNames[i].GetHashCode()];
             }
 
-            // Assemble renderer
             meshRenderer.bones = tempBones;
             meshRenderer.sharedMesh = renderer.sharedMesh;
             meshRenderer.materials = renderer.sharedMaterials;

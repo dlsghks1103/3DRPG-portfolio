@@ -6,6 +6,7 @@ namespace RPG.CharacterControl
 {
     public abstract class AttackBehaviour : MonoBehaviour
     {
+        #region Variables
 #if UNITY_EDITOR
         [Multiline]
         public string developmentDescription = "";
@@ -27,10 +28,14 @@ namespace RPG.CharacterControl
 
         [HideInInspector]
         public LayerMask targetMask;
+        #endregion Variables
 
+        #region Properties
         [SerializeField]
         public bool IsAvailable => calcCoolTime >= coolTime;
+        #endregion Properties
 
+        #region Unity Methods
         protected virtual void Start()
         {
             calcCoolTime = coolTime;
@@ -44,10 +49,13 @@ namespace RPG.CharacterControl
                 calcCoolTime += Time.deltaTime;
             }
         }
+        #endregion Unity Methods
 
+        #region Methods
         public abstract void ExecuteAttack(GameObject target = null, Transform startPoint = null);
 
         public abstract void ExecuteSkillAttack(GameObject target = null, Transform startPoint = null);
+        #endregion Methods
     }
 }
 

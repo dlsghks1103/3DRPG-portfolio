@@ -6,16 +6,30 @@ namespace RPG.Core
 {
 	public class CameraFacing : MonoBehaviour
 	{
+		public enum Axis { up, down, left, right, forward, back };
+		#region Variables
 		Camera referenceCamera;
 
-		public enum Axis { up, down, left, right, forward, back };
-		/// <summary>
-		/// ÁÂ¿ì ¹ÝÀü
-		/// </summary>
+		//ÁÂ¿ì¹ÝÀü
 		public bool reverseFace = false;
 		public Axis axis = Axis.up;
+		#endregion Variables
 
-		// return a direction based upon chosen axis
+		#region Unity Methods
+		void Awake()
+		{
+			if (!referenceCamera)
+				referenceCamera = Camera.main;
+		}
+		void LateUpdate()
+		{
+			Vector3 targetPos = transform.position + referenceCamera.transform.rotation * (reverseFace ? Vector3.forward : Vector3.back);
+			Vector3 targetOrientation = referenceCamera.transform.rotation * GetAxis(axis);
+			transform.LookAt(targetPos, targetOrientation);
+		}
+		#endregion Unity Methods
+
+		#region Methods
 		public Vector3 GetAxis(Axis refAxis)
 		{
 			switch (refAxis)
@@ -31,24 +45,8 @@ namespace RPG.Core
 				case Axis.right:
 					return Vector3.right;
 			}
-
-			// default is Vector3.up
 			return Vector3.up;
 		}
-
-		void Awake()
-		{
-			// if no camera referenced, grab the main camera
-			if (!referenceCamera)
-				referenceCamera = Camera.main;
-		}
-		//Orient the camera after all movement is completed this frame to avoid jittering
-		void LateUpdate()
-		{
-			// rotates the object relative to the camera
-			Vector3 targetPos = transform.position + referenceCamera.transform.rotation * (reverseFace ? Vector3.forward : Vector3.back);
-			Vector3 targetOrientation = referenceCamera.transform.rotation * GetAxis(axis);
-			transform.LookAt(targetPos, targetOrientation);
-		}
+		#endregion Methods
 	}
 }

@@ -5,16 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class StartPoint : MonoBehaviour
 {
+    #region Variables
     bool isLoad = false;
+    #endregion Variables
 
+    #region Unity Methods
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        isLoad = true;
     }
 
     private void LateUpdate()
@@ -30,4 +28,12 @@ public class StartPoint : MonoBehaviour
             }
         }
     }
+    #endregion Unity Methods
+
+    #region Methods
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isLoad = true;
+    }
+    #endregion Methods
 }

@@ -6,11 +6,14 @@ using System;
 [CreateAssetMenu(fileName = "New Stats", menuName = "Stats System/New Character Stats")]
 public class StatsObject : ScriptableObject
 {
+    #region Variables
     public Attribute[] attributes;
 
     public Action<StatsObject> OnChangedStats;
     public Action<StatsObject> OnChangedExp;
+    #endregion Variables
 
+    #region Properties
     public int Level
     {
         get; set;
@@ -172,13 +175,16 @@ public class StatsObject : ScriptableObject
             return (maxExp > 0 ? ((float)exp / (float)maxExp) : 0f);
         }
     }
-  
+    #endregion Properties
 
+    #region Unity Methods
     public void OnEnable()
     {
         InitializeAttributes();
     }
+    #endregion Unity Methods
 
+    #region Methods
     public int GetBaseValue(AttributeType type)
     {
         foreach (Attribute attribute in attributes)
@@ -349,4 +355,5 @@ public class StatsObject : ScriptableObject
         OnChangedStats?.Invoke(this);
         OnChangedExp?.Invoke(this);
     }
+    #endregion Methods
 }

@@ -6,24 +6,31 @@ using RPG.CharacterControl;
 
 public class AttackStateController : MonoBehaviour
 {
+    #region Variables
     public delegate void OnEnterAttackState();
     public OnEnterAttackState enterAttackHandler;
 
     public delegate void OnExitAttackState();
     public OnExitAttackState exitAttackHandler;
+    #endregion Variables
 
+    #region Properties
     public bool IsInAttackState
     {
         get;
         private set;
     }
+    #endregion Properties
 
+    #region Unity Methods
     private void Start()
     {
         enterAttackHandler = new OnEnterAttackState(EnterAttackState);
         exitAttackHandler = new OnExitAttackState(ExitAttackState);
     }
+    #endregion Unity Methods
 
+    #region Methods
     public void OnStartOfAttackState()
     {
         IsInAttackState = true;
@@ -53,4 +60,5 @@ public class AttackStateController : MonoBehaviour
     {
         GetComponent<IAttackable>()?.OnExecuteSkillAttack();
     }
+    #endregion Methods
 }

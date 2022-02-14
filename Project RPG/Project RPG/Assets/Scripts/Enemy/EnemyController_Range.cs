@@ -22,8 +22,6 @@ namespace RPG.Enemy
         public Transform hitPoint;
         public Transform[] waypoints;
 
-        public override float AttackRange => CurrentAttackBehaviour?.range ?? 6.0f;
-
         [SerializeField]
         private NPCBattleUI battleUI;
 
@@ -56,6 +54,8 @@ namespace RPG.Enemy
         #endregion Variables
 
         #region Proeprties
+        public override float AttackRange => CurrentAttackBehaviour?.range ?? 6.0f;
+
         public override bool IsAvailableAttack
         {
             get
@@ -102,31 +102,6 @@ namespace RPG.Enemy
 
             base.Update();
         }
-
-
-
-        private void OnAnimatorMove()
-        {
-            // Follow NavMeshAgent
-            //Vector3 position = agent.nextPosition;
-            //animator.rootPosition = agent.nextPosition;
-            //transform.position = position;
-
-            // Follow CharacterController
-            //Vector3 position = transform.position;
-            //position.y = agent.nextPosition.y;
-
-            //animator.rootPosition = position;
-            //agent.nextPosition = position;
-
-            // Follow RootAnimation
-            //Vector3 position = animator.rootPosition;
-            //position.y = agent.nextPosition.y;
-
-            //agent.nextPosition = position;
-            //transform.position = position;
-        }
-
         #endregion Unity Methods
 
         #region Helper Methods

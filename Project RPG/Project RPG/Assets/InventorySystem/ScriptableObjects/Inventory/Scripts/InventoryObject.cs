@@ -20,8 +20,6 @@ namespace RPG.InventorySystem.Inventory
         [SerializeField]
         private Inventory container = new Inventory();
 
-        //public Action<InventorySlot> OnUseItem;
-
         #endregion Variables
 
         #region Properties
@@ -46,12 +44,6 @@ namespace RPG.InventorySystem.Inventory
         }
 
         #endregion Properties
-
-        #region Unity Methods
-
-
-
-        #endregion Unity Methods
 
         #region Methods
         public bool AddItem(Item item, int amount)
@@ -121,7 +113,6 @@ namespace RPG.InventorySystem.Inventory
                 }
             }
         }
-        #endregion
 
         [ContextMenu("Clear")]
         public void Clear()
@@ -148,5 +139,6 @@ namespace RPG.InventorySystem.Inventory
                 return;
             }
         }
+        #endregion Methods
     }
 }

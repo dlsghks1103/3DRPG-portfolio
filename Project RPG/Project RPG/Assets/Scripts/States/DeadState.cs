@@ -10,10 +10,13 @@ namespace RPG.AI
     [Serializable]
     public class DeadState : State<EnemyController>
     {
+        #region Variables
         private Animator animator;
 
         protected int isAliveHash = Animator.StringToHash("IsAlive");
+        #endregion Variables
 
+        #region Methods
         public override void OnInitialized()
         {
             animator = context.GetComponent<Animator>();
@@ -35,5 +38,6 @@ namespace RPG.AI
         public override void OnExit()
         {
         }
+        #endregion Methods
     }
 }

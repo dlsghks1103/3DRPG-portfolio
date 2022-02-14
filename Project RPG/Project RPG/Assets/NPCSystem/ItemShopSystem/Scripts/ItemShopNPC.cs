@@ -7,9 +7,15 @@ namespace RPG.ItemShopSystem
 {
     public class ItemShopNPC : MonoBehaviour, IInteractable
     {
+        #region Variables
         private float distance = 2.0f;
-        public float Distance => distance;
+        #endregion Variables
 
+        #region Properties
+        public float Distance => distance;
+        #endregion Properties
+
+        #region IInteractable Interfaces
         public void Interact(GameObject other)
         {
             float calcDistance = Vector3.Distance(other.transform.position, transform.position);
@@ -26,5 +32,6 @@ namespace RPG.ItemShopSystem
         {
 
         }
+        #endregion IInteractable Interfaces
     }
 }

@@ -7,10 +7,13 @@ namespace RPG.UIs
 {
     public class DamageText : MonoBehaviour
     {
+        #region Variables
         private TextMeshProUGUI textMeshPro;
 
         public float destroyDelayTime = 1.0f;
+        #endregion Variables
 
+        #region Properties
         public int Damage
         {
             get
@@ -30,7 +33,9 @@ namespace RPG.UIs
                 }
             }
         }
+        #endregion Properties
 
+        #region Unity Methods
         private void Awake()
         {
             textMeshPro = GetComponent<TextMeshProUGUI>();
@@ -40,6 +45,7 @@ namespace RPG.UIs
         {
             Destroy(gameObject, destroyDelayTime);
         }
+        #endregion Unity Methods
     }
 }
 

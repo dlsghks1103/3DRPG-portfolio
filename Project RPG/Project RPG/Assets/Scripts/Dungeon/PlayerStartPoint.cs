@@ -5,10 +5,12 @@ using RPG.PlyerController;
 
 public class PlayerStartPoint : MonoBehaviour
 {
+    #region Variables
     public string mapName;
     private PlayerController player;
-    private bl_Joystick bl_Joystick;
+    #endregion Variables
 
+    #region Unity Methods
     void OnEnable()
     {
         if (player == null)
@@ -20,6 +22,5 @@ public class PlayerStartPoint : MonoBehaviour
             player.transform.position = transform.position;
         }
     }
-
-    
+    #endregion Unity Methods
 }

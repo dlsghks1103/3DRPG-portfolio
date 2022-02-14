@@ -7,15 +7,20 @@ namespace RPG.QuestSystem
 {
     public class QuestUI : MonoBehaviour
     {
+        #region Variables
         public Text[] questTextList;
         private Dictionary<int, string> questList = new Dictionary<int, string>();
+        #endregion Variables
 
+        #region Unity Methods
         void Start()
         {
             QuestManager.Instance.OnAcceptedQuest += UpdateQuestList;
             QuestManager.Instance.OnRewardQuest += ClearQuest;
         }
+        #endregion Unity Methods
 
+        #region Methods
         public void UpdateQuestList(QuestObject questObject)
         {
             if (questList.Count > 2)
@@ -59,5 +64,6 @@ namespace RPG.QuestSystem
                 index++;
             }
         }
+        #endregion Methods
     }
 }

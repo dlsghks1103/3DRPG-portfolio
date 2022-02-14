@@ -7,9 +7,12 @@ namespace RPG.CharacterControl
 {
     public class MeleeAttackBehaviour : AttackBehaviour
     {
+        #region Variables
         public ManualCollision attackCollision;
         public StatsObject statsObject;
+        #endregion Variables
 
+        #region Methods
         public override void ExecuteAttack(GameObject target = null, Transform startPoint = null)
         {
             Collider[] colliders = attackCollision?.CheckOverlapBox(targetMask);
@@ -43,5 +46,6 @@ namespace RPG.CharacterControl
 
             return statsObject.GetModifiedValue(AttributeType.Agility) + statsObject.GetModifiedValue(AttributeType.Strength);
         }
+        #endregion Methods
     }
 }

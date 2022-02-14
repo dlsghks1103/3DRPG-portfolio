@@ -9,6 +9,7 @@ namespace RPG.AI
 {
     public class MoveState : State<EnemyController>
     {
+        #region Variables
         private Animator animator;
         private CharacterController controller;
         private NavMeshAgent agent;
@@ -19,7 +20,9 @@ namespace RPG.AI
 
         private int isMovehash = Animator.StringToHash("IsMove");
         private int moveSpeedHash = Animator.StringToHash("MoveSpeed");
+        #endregion Variables
 
+        #region Methods
         public override void OnInitialized()
         {
             animator = context.GetComponent<Animator>();
@@ -81,5 +84,6 @@ namespace RPG.AI
             animator?.SetBool(isMovehash, false);
             animator?.SetFloat(moveSpeedHash, 0.0f);
         }
+        #endregion Methods
     }
 }

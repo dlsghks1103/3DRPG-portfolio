@@ -4,16 +4,20 @@ namespace RPG.PlayerCameraSystem
 {
 	public class SpringArm : MonoBehaviour
 	{
+		#region Variables
 		public float TargetLength = 12.0f;
 		public float SpeedDamp = 0.0f;
-		public Transform CollisionSocket;
 		public float CollisionRadius = 0.25f;
-		public LayerMask CollisionMask = 0;
-		public Camera Camera;
 		public float CameraViewportExtentsMultipllier = 1.0f;
-
 		private Vector3 _socketVelocity;
 
+		public Transform CollisionSocket;
+		public LayerMask CollisionMask = 0;
+		public Camera Camera;
+
+		#endregion Variables
+
+		#region Unity Methods
 		private void LateUpdate()
 		{
 			if (Camera != null)
@@ -25,6 +29,18 @@ namespace RPG.PlayerCameraSystem
 			UpdateLength();
 		}
 
+		private void OnDrawGizmos()
+		{
+			if (CollisionSocket != null)
+			{
+				Gizmos.color = Color.green;
+				Gizmos.DrawLine(transform.position, CollisionSocket.transform.position);
+				DrawGizmoSphere(CollisionSocket.transform.position, CollisionRadius);
+			}
+		}
+		#endregion Unity Methods
+
+		#region Methods
 		private float GetCollisionRadiusForCamera(Camera cam)
 		{
 			float halfFOV = (cam.fieldOfView / 2.0f) * Mathf.Deg2Rad; // vertical FOV in radians
@@ -57,16 +73,6 @@ namespace RPG.PlayerCameraSystem
 
 			CollisionSocket.localPosition = Vector3.SmoothDamp(
 				CollisionSocket.localPosition, newSocketLocalPosition, ref _socketVelocity, SpeedDamp);
-		}
-
-		private void OnDrawGizmos()
-		{
-			if (CollisionSocket != null)
-			{
-				Gizmos.color = Color.green;
-				Gizmos.DrawLine(transform.position, CollisionSocket.transform.position);
-				DrawGizmoSphere(CollisionSocket.transform.position, CollisionRadius);
-			}
 		}
 
 		private void DrawGizmoSphere(Vector3 pos, float radius)
@@ -105,5 +111,6 @@ namespace RPG.PlayerCameraSystem
 
 			return point;
 		}
+		#endregion Methods
 	}
 }

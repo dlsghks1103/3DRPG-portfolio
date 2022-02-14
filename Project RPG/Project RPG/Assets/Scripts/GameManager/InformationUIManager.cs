@@ -7,18 +7,25 @@ using RPG.InventorySystem.Items;
 
 public class InformationUIManager : MonoBehaviour
 {
+    #region Variables
     private static InformationUIManager instance;
 
     public GameObject InformationUI;
-    public static InformationUIManager Instance => instance;
-
     private InventorySlot inventorySlot;
+    #endregion Variables
 
+    #region Properties
+    public static InformationUIManager Instance => instance;
+    #endregion Properties
+
+    #region Unity Methods
     private void Start()
     {
         instance = this;
     }
+    #endregion Unity Methods
 
+    #region Methods
     public void ViewItemInformation(InventorySlot slot)
     {
         if (slot.ItemObject == null)
@@ -32,10 +39,6 @@ public class InformationUIManager : MonoBehaviour
             InformationUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = slot.ItemObject.icon;
             InformationUI.transform.GetChild(0).GetChild(2).GetComponentInChildren<Text>().text = slot.ItemObject.data.name;
             InformationUI.transform.GetChild(0).GetChild(3).GetComponentInChildren<Text>().text = slot.ItemObject.data.buffs[0].stat.ToString() + " : " + slot.ItemObject.data.buffs[0].value.ToString();
-
-            //Vector3 uiPoint = new Vector3(150, 150);
-
-            //transform.GetChild(0).GetChild(0).gameObject.transform.position = GameManager.Instance.dynamicInventory.transform.position + uiPoint;
 
             InformationUI.transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -66,4 +69,5 @@ public class InformationUIManager : MonoBehaviour
         InformationUI.transform.GetChild(0).gameObject.SetActive(false);
         InformationUI.transform.GetChild(1).gameObject.SetActive(false);
     }
+    #endregion Methods
 }

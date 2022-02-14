@@ -9,9 +9,11 @@ namespace RPG.Skill
 {
     public class SkillController : MonoBehaviour
     {
+        #region Variables
         public StatsObject playerStats;
         public GameObject effectPrefabs;
         public Transform effectPoint;
+
         public float coolTime = 0;
         public Image coolTimeImage;
 
@@ -20,7 +22,9 @@ namespace RPG.Skill
         public int animationIndex = 0;
 
         public bool IsCoolTime = true;
+        #endregion Variables
 
+        #region Unity Methods
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && IsCoolTime)
@@ -28,7 +32,9 @@ namespace RPG.Skill
                 UseSkill();
             }
         }
+        #endregion Unity Methods
 
+        #region Methods
         public void UseSkill()
         {
             float skillCoolTime = coolTime;
@@ -57,5 +63,6 @@ namespace RPG.Skill
             }
             IsCoolTime = true;
         }
+        #endregion Methods
     }
 }

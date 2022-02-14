@@ -81,7 +81,6 @@ namespace RPG.InventorySystem.UIs
             MouseData.interfaceMouseIsOver = null;
         }
 
-
         public void OnEnter(GameObject go)
         {
             MouseData.slotHoveredOver = go;
@@ -91,7 +90,6 @@ namespace RPG.InventorySystem.UIs
         {
             MouseData.slotHoveredOver = null;
         }
-
 
         public void OnStartDrag(GameObject go)
         {
@@ -125,7 +123,6 @@ namespace RPG.InventorySystem.UIs
             {
                 return;
             }
-
             MouseData.tempItemBeingDragged.GetComponent<RectTransform>().position = Input.mousePosition;
         }
 
@@ -180,7 +177,6 @@ namespace RPG.InventorySystem.UIs
         public virtual void OnLeftDoubleClick(InventorySlot slot)
         {
         }
-
         #endregion Methods
     }
 }

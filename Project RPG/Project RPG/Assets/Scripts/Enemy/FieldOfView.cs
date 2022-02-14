@@ -36,7 +36,6 @@ namespace RPG.Enemy
         #endregion Properties
 
         #region Unity Methods
-        // Start is called before the first frame update
         void Start()
         {
             StartCoroutine("FindTargetsWithDelay", delay);
