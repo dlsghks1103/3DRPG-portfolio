@@ -14,7 +14,7 @@ public class InformationUIManager : MonoBehaviour
 
     private InventorySlot inventorySlot;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
     }
@@ -37,7 +37,7 @@ public class InformationUIManager : MonoBehaviour
 
             //transform.GetChild(0).GetChild(0).gameObject.transform.position = GameManager.Instance.dynamicInventory.transform.position + uiPoint;
 
-            InformationUI.gameObject.SetActive(true);
+            InformationUI.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -63,6 +63,7 @@ public class InformationUIManager : MonoBehaviour
 
     public void InformationUIClose()
     {
-        InformationUI.gameObject.SetActive(false);
+        InformationUI.transform.GetChild(0).gameObject.SetActive(false);
+        InformationUI.transform.GetChild(1).gameObject.SetActive(false);
     }
 }

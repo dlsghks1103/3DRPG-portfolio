@@ -18,16 +18,17 @@ namespace RPG.StatsSystem
         #endregion Properties
 
         #region Unity Methods
-        private void Awake()
+        private void Start()
         {
             instance = this;
         }
         #endregion Unity Methods
 
         #region Methods
-        public void SetEXP(int exp)
+        public void QuestReward(int exp, int gold)
         {
             statsObject.AddExp(exp);
+            statsObject.AddGold(gold);
         }
         #endregion Methods
     }

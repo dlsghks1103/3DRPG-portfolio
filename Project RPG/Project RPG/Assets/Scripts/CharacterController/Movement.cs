@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.CharacterControl;
+using RPG.PlayerCameraSystem;
 
 namespace RPG.PlyerController
 {
     [RequireComponent(typeof(CharacterController)), RequireComponent(typeof(Animator)), RequireComponent(typeof(PlayerInput))]
     public class Movement : MonoBehaviour
     {
+        [SerializeField]
+        private PlayerCamera playerCamera;
+
         [SerializeField]
         private float speed = 5f;
 
@@ -42,6 +46,8 @@ namespace RPG.PlyerController
 
         private bool isGrounded;
 
+        Vector3 moveDirection;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -50,12 +56,10 @@ namespace RPG.PlyerController
             playerInput = GetComponent<PlayerInput>();
             PlayerController = GetComponent<PlayerController>();
         }
-
-        // Update is called once per frame
-        void Update()
+        private void FixedUpdate()
         {
             // Check grounded
-           isGrounded = characterController.isGrounded;
+            isGrounded = characterController.isGrounded;
             if (isGrounded && calcVelocity.y < 0)
             {
                 calcVelocity.y = 0f;
@@ -67,13 +71,11 @@ namespace RPG.PlyerController
             {
                 StopMovementOnAttack();
             }
-            else 
+            else
             {
                 ProcessMove();
-                //ProcessDash();
-                //ProcessJump();
             }
-           
+
             // Process gravity
             calcVelocity.y += gravity * Time.deltaTime;
 
@@ -82,7 +84,10 @@ namespace RPG.PlyerController
             calcVelocity.y /= 1 + drags.y * Time.deltaTime;
             calcVelocity.z /= 1 + drags.z * Time.deltaTime;
 
-            characterController.Move(calcVelocity * Time.deltaTime);
+            if (moveDirection != Vector3.zero)
+            {
+                characterController.Move(calcVelocity * Time.deltaTime);
+            }
         }
 
         private void ProcessMove()
@@ -90,20 +95,27 @@ namespace RPG.PlyerController
             float _x = Joystick.Horizontal;
             float _z = Joystick.Vertical;
 
-            //var _x = playerInput.MovementInput.x;
-            //var _z = playerInput.MovementInput.y;
+            moveDirection = new Vector3(_x, 0, _z);
 
-            Vector3 moveDirection = new Vector3(_x, 0, _z);
-            //moveDirection = transform.TransformDirection(moveDirection);
-            characterController.Move(moveDirection * Time.deltaTime * speed);
-            
             if (moveDirection != Vector3.zero)
             {
+                characterController.Move(moveDirection * Time.deltaTime * speed);
                 transform.forward = moveDirection;
             }
 
             animator.SetFloat(InputX, _x);
             animator.SetFloat(InputY, _z);
+        }
+
+        private void TestMove()
+        {
+            Vector3 controllerDir = Vector3.forward * Joystick.Vertical;
+            controllerDir += Vector3.right * Joystick.Horizontal;
+
+            Vector3 camPivotAngel = playerCamera.Pivot.rotation.eulerAngles;
+            Vector3 conDirAngel = Quaternion.LookRotation(controllerDir).eulerAngles;
+
+            Vector3 moveAngel = Vector3.up * (conDirAngel.y + camPivotAngel.y);
         }
 
         private void ProcessJump()

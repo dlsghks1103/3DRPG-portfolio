@@ -18,6 +18,21 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        
+        var obj = FindObjectsOfType<UIManager>();
+
+        if (obj.Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
         Instance = this;
     }
 

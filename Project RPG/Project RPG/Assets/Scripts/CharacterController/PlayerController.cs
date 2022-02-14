@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.EventSystems;
 using RPG.QuickSlot;
-
+using UnityEngine.SceneManagement;
 
 namespace RPG.PlyerController
 {
@@ -51,9 +51,28 @@ namespace RPG.PlyerController
 
         private int pointerID = 0;
 
+        [NonSerialized]
+        public string currentMapName;
 
+        public GameObject potalUI;
+
+        bool isOnUI = false;
 
         public bool AttackInProgress { get; private set; } = false;
+        private void Awake()
+        {
+            var obj = FindObjectsOfType<PlayerController>();
+
+            if (obj.Length == 1)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
         private void Start()
         {
 #if UNITY_EDITOR
@@ -73,6 +92,11 @@ namespace RPG.PlyerController
             InitAttackBehaviour();
         }
 
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
         private void Update()
         {
             if (!IsAlive)
@@ -83,7 +107,14 @@ namespace RPG.PlyerController
             CheckAttackBehaviour();
             CheckSkillAttackBehaviour();
 
-            bool isOnUI = EventSystem.current.IsPointerOverGameObject(pointerID);
+            if (EventSystem.current == null)
+            {
+                return;
+            }
+            else
+            {
+                isOnUI = EventSystem.current.IsPointerOverGameObject(pointerID);
+            }
 
             if (!isOnUI && playerInput.AttackInput && !AttackInProgress&& playerStats.Mana >0)
             {
@@ -134,6 +165,11 @@ namespace RPG.PlyerController
                 }
             }
             yield return null;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+           
         }
 
         private void InitAttackBehaviour()
@@ -320,14 +356,38 @@ namespace RPG.PlyerController
         #endregion
         private void OnTriggerEnter(Collider other)
         {
-            var item = other.GetComponent<GroundItem>();
-            if (item)
+            if (other.GetComponent<GroundItem>())
             {
-                if (inventory.AddItem(new Item(item.itemObject), 1))
-                    Destroy(other.gameObject);
+
+                GroundItem item = other.GetComponent<GroundItem>();
+                if (item)
+                {
+                    if (inventory.AddItem(new Item(item.itemObject), 1))
+                        Destroy(other.gameObject);
+                }
+            }
+            else if (other.GetComponent<PotalSystem>())
+            {
+                PotalSystem loadSceneName = other.GetComponent<PotalSystem>();
+                currentMapName = loadSceneName.potalName;
+                potalUI.gameObject.SetActive(true);
             }
         }
         #endregion Inventory
+
+        public void OnClickGO()
+        {
+            if (currentMapName == "Home")
+            {
+                transform.position = GameObject.Find("StartPoint").transform.position;
+                potalUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                potalUI.gameObject.SetActive(false);
+                LoadingSceneManager.LoadScene(currentMapName);
+            }
+        }
 
         public void OnClickAttackButton()
         {

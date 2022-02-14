@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-namespace RPG.PlayerCamera
+namespace RPG.PlayerCameraSystem
 {
 	public class PlayerCamera : MonoBehaviour
 	{
@@ -10,17 +11,50 @@ namespace RPG.PlayerCamera
 		public Transform Target; // The point at which the camera pivots around
 		public Camera Camera;
 
+		public bool isUIBtnDown;
+
+		private bool isOnUI = false;
+		private int pointerID = 0;
+
 		private Vector3 _cameraVelocity;
 		Vector2 controllRotation;
 
+		private void Awake()
+		{
+			var obj = FindObjectsOfType<PlayerCamera>();
+
+			if (obj.Length == 1)
+			{
+				DontDestroyOnLoad(gameObject);
+			}
+			else
+			{
+				Destroy(gameObject);
+			}
+		}
+
+        private void Start()
+        {
+#if UNITY_ANDROID
+			pointerID = 0;
+#endif
+		}
+
 		private void Update()
 		{
-			SetPosition(Target.transform.position);
-			/*
-			if (Input.multiTouchEnabled && false) 
+			if (EventSystem.current == null)
 			{
-				
+				return;
+			}
+			else
+			{
+				isOnUI = EventSystem.current.IsPointerOverGameObject(pointerID);
+			}
 
+			SetPosition(Target.transform.position);
+			
+			if (Input.GetMouseButton(0) && !isUIBtnDown && !isOnUI) 
+			{
 				Vector2 CameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
 				UpdateControlRotation();
@@ -36,7 +70,7 @@ namespace RPG.PlayerCamera
 				controllRotation = new Vector2(pitchAngle, yawAngle);
 				SetControlRotation(controllRotation);
 			}
-			*/
+			
 		}
 
 		public void SetPosition(Vector3 position)
@@ -61,13 +95,23 @@ namespace RPG.PlayerCamera
 			// Adjust the pitch angle (X Rotation)
 			float pitchAngle = controllRotation.x;
 			pitchAngle %= 360.0f;
-			pitchAngle = Mathf.Clamp(pitchAngle, -45, 75);
+			pitchAngle = Mathf.Clamp(pitchAngle, 5, 60);
 
 			// Adjust the yaw angle (Y Rotation)
 			float yawAngle = controllRotation.y;
 			yawAngle %= 360.0f;
 
 			controllRotation = new Vector2(pitchAngle, yawAngle);
+		}
+
+		public void PointerDown()
+		{
+			isUIBtnDown = true;
+		}
+
+		public void PointerUp()
+		{
+			isUIBtnDown = false;
 		}
 	}
 }

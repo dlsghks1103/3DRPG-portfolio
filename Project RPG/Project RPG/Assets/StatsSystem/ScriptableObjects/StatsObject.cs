@@ -295,7 +295,7 @@ public class StatsObject : ScriptableObject
         SetBaseValue(AttributeType.Mana, 200);
         SetBaseValue(AttributeType.Level, 0);
         SetBaseValue(AttributeType.Exp, 0);
-        SetBaseValue(AttributeType.Gold, 3000);
+        SetBaseValue(AttributeType.Gold, 0);
 
         Health = GetModifiedValue(AttributeType.Health);
         Mana = GetModifiedValue(AttributeType.Mana);

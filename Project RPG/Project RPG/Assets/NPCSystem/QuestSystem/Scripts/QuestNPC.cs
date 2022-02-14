@@ -29,6 +29,20 @@ namespace RPG.QuestSystem
         #endregion Variables
 
         #region Unity Methods
+        private void Awake()
+        {
+            var obj = FindObjectsOfType<QuestNPC>();
+
+            if (obj.Length == 2)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
         private void Start()
         {
             questEffectGO.SetActive(false);
@@ -80,7 +94,7 @@ namespace RPG.QuestSystem
                 // Reward quest
                 DialogueManager.Instance.StartDialogue(completedDialogue);
                 questObject.status = QuestStatus.Rewarded;
-                StatsManager.Instance.SetEXP(questObject.data.rewardExp);
+                StatsManager.Instance.QuestReward(questObject.data.rewardExp, questObject.data.rewardGold);
                 QuestManager.Instance.EndQuest(questObject);
                 questEffectGO.SetActive(false);
                 questRewardGO.SetActive(false);

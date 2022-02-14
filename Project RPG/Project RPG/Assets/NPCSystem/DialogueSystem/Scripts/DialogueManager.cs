@@ -31,12 +31,21 @@ namespace RPG.DialogueSystem
         #region Unity Methods
         private void Awake()
         {
-            instance = this;
+            var obj = FindObjectsOfType<DialogueManager>();
+
+            if (obj.Length == 1)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(obj[1]);
+            }
         }
 
-        // Start is called before the first frame update
         void Start()
         {
+            instance = this;
             sentences = new Queue<string>();
         }
 
@@ -47,7 +56,7 @@ namespace RPG.DialogueSystem
         public void StartDialogue(Dialogue dialogue)
         {
             OnStartDialogue?.Invoke();
-            blockInputPannel.gameObject.SetActive(true);
+            //blockInputPannel.gameObject.SetActive(true);
 
             animator?.SetBool("IsOpen", true);
 
@@ -93,7 +102,7 @@ namespace RPG.DialogueSystem
         {
             animator?.SetBool("IsOpen", false);
 
-            blockInputPannel.gameObject.SetActive(false);
+            //blockInputPannel.gameObject.SetActive(false);
             OnEndDialogue?.Invoke();
         }
 

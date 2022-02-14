@@ -25,6 +25,20 @@ namespace RPG.QuestSystem
         #region Unity Methods
         private void Awake()
         {
+            var obj = FindObjectsOfType<QuestManager>();
+
+            if (obj.Length == 1)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(obj[1]);
+            }
+        }
+
+        private void Start()
+        {
             instance = this;
         }
         #endregion Unity Methods

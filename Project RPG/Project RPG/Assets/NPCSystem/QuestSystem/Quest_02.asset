@@ -16,11 +16,11 @@ MonoBehaviour:
     id: 1
     type: 0
     targetId: 1
-    count: 2
+    count: 7
     completedCount: 0
-    rewardExp: 100
-    rewardGold: 300
+    rewardExp: 3000
+    rewardGold: 10000
     rewardItemId: 0
-    title: "\uB9C8\uC744\uC8FC\uBCC0 \uAC70\uBBF8\uB97C \uC7A1\uC544\uB77C2"
+    title: "\uB358\uC804\uC548\uC5D0 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130\uB97C \uC7A1\uC790"
     description: 
   status: 0

@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/RPG/MAP.unity
+    path: Assets/Scenes/RPG/MainScene.unity
+    guid: e0bb358b05a3f894e9d5d060ea8f359f
+  - enabled: 1
+    path: Assets/Scenes/RPG/LoadingScene.unity
+    guid: 64972f5c6c13a8341a26c4bea3f961ec
+  - enabled: 1
+    path: Assets/Scenes/RPG/Village.unity
     guid: 72c1a7e03b7575c4e9d481d28b4426f7
+  - enabled: 1
+    path: Assets/Scenes/RPG/Dungeon.unity
+    guid: d27aa84ef59b9404bb097d98aed37565
   m_configObjects: {}

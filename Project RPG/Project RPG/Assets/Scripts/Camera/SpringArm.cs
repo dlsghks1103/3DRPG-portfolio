@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.PlayerCamera
+namespace RPG.PlayerCameraSystem
 {
 	public class SpringArm : MonoBehaviour
 	{
