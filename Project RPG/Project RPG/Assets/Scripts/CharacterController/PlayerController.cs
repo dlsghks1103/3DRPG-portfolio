@@ -82,7 +82,7 @@ namespace RPG.PlyerController
         private void Start()
         {
 #if UNITY_EDITOR
-            pointerID = -1;
+            pointerID = 0;
 #endif
 
 #if UNITY_ANDROID
@@ -92,7 +92,6 @@ namespace RPG.PlyerController
             animator = GetComponent<Animator>();
             playerInput = GetComponent<PlayerInput>();
             camera = Camera.main;
-
             InitAttackBehaviour();
         }
 
@@ -117,7 +116,7 @@ namespace RPG.PlyerController
             }
             else
             {
-                isOnUI = EventSystem.current.IsPointerOverGameObject();
+                isOnUI = EventSystem.current.IsPointerOverGameObject(pointerID);
             }
 
             if (!isOnUI && playerInput.AttackInput && !AttackInProgress&& playerStats.Mana >0)
