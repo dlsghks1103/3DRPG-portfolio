@@ -30,6 +30,7 @@ namespace RPG.QuestSystem
             if (obj.Length == 1)
             {
                 DontDestroyOnLoad(gameObject);
+                instance = this;
             }
             else
             {

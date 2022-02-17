@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public DynamicInventoryUI inventoryUI;
 
     [SerializeField]
-    public ScrollRect scrollView;
+    public GameObject QuestPanel;
     #endregion Variables
 
     #region Unity Methods
@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickQuestUIButton()
     {
-        scrollView.gameObject.SetActive(!scrollView.gameObject.activeSelf);
+        QuestPanel.gameObject.SetActive(!QuestPanel.gameObject.activeSelf);
     }
     #endregion Methods
 }

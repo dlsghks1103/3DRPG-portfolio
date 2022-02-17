@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using RPG.InventorySystem.UIs;
 using RPG.ItemShopSystem;
 using RPG.PlyerController;
@@ -17,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     public PlayerController playerController;
     public PortionController portionController;
+
+    [NonSerialized]
+    public bool IsInventoryDrag = false;
 
     private static GameManager instance;
 

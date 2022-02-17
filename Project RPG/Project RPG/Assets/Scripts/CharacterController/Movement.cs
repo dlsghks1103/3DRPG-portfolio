@@ -60,13 +60,6 @@ namespace RPG.PlyerController
         }
         private void FixedUpdate()
         {
-            // Check grounded
-            isGrounded = characterController.isGrounded;
-            if (isGrounded && calcVelocity.y < 0)
-            {
-                calcVelocity.y = 0f;
-            }
-
             if (animator == null) return;
 
             if (PlayerController.AttackInProgress)
@@ -75,20 +68,8 @@ namespace RPG.PlyerController
             }
             else
             {
+                isGrounded = characterController.isGrounded;
                 ProcessMove();
-            }
-
-            // Process gravity
-            calcVelocity.y += gravity * Time.deltaTime;
-
-            // Process dash ground drags
-            calcVelocity.x /= 1 + drags.x * Time.deltaTime;
-            calcVelocity.y /= 1 + drags.y * Time.deltaTime;
-            calcVelocity.z /= 1 + drags.z * Time.deltaTime;
-
-            if (moveDirection != Vector3.zero)
-            {
-                characterController.Move(calcVelocity * Time.deltaTime);
             }
         }
         #endregion Unity Methods
@@ -99,14 +80,40 @@ namespace RPG.PlyerController
             float _x = Joystick.Horizontal;
             float _z = Joystick.Vertical;
 
+            Vector3 offset = playerCamera.transform.forward;
+            offset.y = 0;
+            transform.LookAt(characterController.transform.position + offset);
+
             moveDirection = new Vector3(_x, 0, _z);
+            moveDirection = characterController.transform.TransformDirection(moveDirection);
+            moveDirection *= speed;
+
+            if (moveDirection != Vector3.zero)
+            {
+                characterController.SimpleMove(moveDirection);
+                //characterController.Move(moveDirection * Time.deltaTime);
+                transform.forward = moveDirection;
+            }
+
+            animator.SetFloat(InputX, _x);
+            animator.SetFloat(InputY, _z);
+           
+
+
+
+            /*
+            float _x = Joystick.Horizontal;
+            float _z = Joystick.Vertical;
+
+            moveDirection = new Vector3(_x, 0, _z);
+            //moveDirection = transform.TransformDirection(moveDirection);
 
             if (moveDirection != Vector3.zero)
             {
                 characterController.Move(moveDirection * Time.deltaTime * speed);
                 transform.forward = moveDirection;
             }
-
+            */
             animator.SetFloat(InputX, _x);
             animator.SetFloat(InputY, _z);
         }

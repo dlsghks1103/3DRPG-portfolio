@@ -93,6 +93,7 @@ namespace RPG.InventorySystem.UIs
 
         public void OnStartDrag(GameObject go)
         {
+            GameManager.Instance.IsInventoryDrag = true;
             MouseData.tempItemBeingDragged = CreateDragImage(go);
         }
 
@@ -139,6 +140,7 @@ namespace RPG.InventorySystem.UIs
                 InventorySlot mouseHoverSlotData = MouseData.interfaceMouseIsOver.slotUIs[MouseData.slotHoveredOver];
                 inventoryObject.SwapItems(slotUIs[go], mouseHoverSlotData);
             }
+            GameManager.Instance.IsInventoryDrag = false;
         }
 
         public void OnClick(GameObject go, PointerEventData data)

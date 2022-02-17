@@ -57,7 +57,7 @@ namespace RPG.PlayerCameraSystem
 
 			SetPosition(Target.transform.position);
 			
-			if (Input.GetMouseButton(0) && !isUIBtnDown && !isOnUI) 
+			if (Input.GetMouseButton(0) && !isUIBtnDown && !isOnUI && !GameManager.Instance.IsInventoryDrag) 
 			{
 				Vector2 CameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 

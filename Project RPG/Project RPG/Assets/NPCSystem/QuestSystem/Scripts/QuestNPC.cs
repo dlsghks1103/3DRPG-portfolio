@@ -55,6 +55,7 @@ namespace RPG.QuestSystem
                 questRewardGO.SetActive(true);
             }
             QuestManager.Instance.OnCompletedQuest += OnCompletedQuest;
+            QuestManager.Instance.OnAcceptedQuest += OnAcceptedQuest;
         }
         #endregion Unity Methods
 
@@ -124,6 +125,12 @@ namespace RPG.QuestSystem
                 questEffectGO.SetActive(false);
                 questRewardGO.SetActive(true);
             }
+        }
+
+        private void OnAcceptedQuest(QuestObject questObject)
+        {
+            questEffectGO.SetActive(false);
+            questRewardGO.SetActive(false);
         }
         #endregion Methods
 
